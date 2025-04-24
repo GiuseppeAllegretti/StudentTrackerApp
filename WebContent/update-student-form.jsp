@@ -57,7 +57,7 @@
 			</div>
 			
 			<div class="col-6">
-				<form action="StudentControllerServlet" method="GET">
+				<form action="StudentControllerServlet" method="POST">
 				
 					<input type="hidden" name="command" value="UPDATE">
 					<input type="hidden" name="studentId" value="${THE_STUDENT.id}">

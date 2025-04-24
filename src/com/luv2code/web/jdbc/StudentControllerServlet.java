@@ -139,7 +139,7 @@ public class StudentControllerServlet extends HttpServlet {
 	            return;
 	        }
 
-	        // Non è duplicato → salva
+	        // Non è duplicato -> salva
 	        studentDbUtil.addStudent(theStudent);
 	    }
 
