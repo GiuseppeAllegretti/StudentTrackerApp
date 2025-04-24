@@ -1,5 +1,4 @@
-Student Tracker App è una web application che consente di gestire un archivio studenti.
-Permette di aggiungere, modificare, visualizzare ed eliminare studenti da un database MySQL.
+Student Tracker App è una web application che consente di gestire un archivio studenti. Permette di aggiungere, modificare, visualizzare ed eliminare studenti da un database MySQL.
 
 Tecnologie utilizzate
 - Java (Servlet, JDBC)
@@ -18,4 +17,4 @@ Funzionalità principali:
 5. Visualizzazione studenti con tabella Bootstrap responsive
 
 Progetto esercitazione su su Java Web
-Sbrebbaz
+-- Sbrebbaz -
