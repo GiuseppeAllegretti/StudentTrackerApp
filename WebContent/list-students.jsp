@@ -36,6 +36,7 @@ h2 {
 	color: white;
 	padding: 10px;
 }
+
 </style>
 </head>
 
@@ -43,21 +44,44 @@ h2 {
 
 	<nav class="navbar bg-body-tertiary">
 		<div class="container-fluid d-flex align-items-center">
-			<a id="linkNavbar" class="navbar-brand" href="#"><h1>Student tracker App</h1></a>
+			<a id="linkNavbar" class="navbar-brand" href="StudentControllerServlet"><h1>Student tracker App</h1></a>
 			
-			<div class="d-flex ms-auto">
+			<div class="d-flex ms-auto" id="containerItemNav">
 				<div class="me-2">
-					<input type="button" class="btn btn-outline-success"
-						value="Aggiungi Studente"
+					<input type="button" class="btn btn-outline-success" value="Aggiungi Studente"
 						onclick="window.location.href='add-student-form.jsp'; return false;">
 				</div>
+				<div>
+					<form action="StudentControllerServlet" method="GET" class="d-flex" >
+							<input class="form-control me-2" name="term" type="search" placeholder="Cerca studente" aria-label="Cerca">
+							<input type="hidden" name="command" value="SEARCH">
+							
+							<input type="submit" class="btn btn-outline-dark" value="cerca">
+					</form>
+				</div>
+				
 			</div>
 		</div>
 	</nav>
+	
+	
 
 	<div class="container" id="tabella">
 		<div class="row justify-content-center">
 			<div class="col-12 col-lg-10">
+			
+				<c:if test="${empty STUDENT_LIST}">
+					<div class="alert alert-warning text-center mt-4" role="alert">
+						Nessuno studente trovato come <strong>"${param.term}"</strong>.
+					</div>
+				</c:if>
+				<c:if test="${TERM_NON_VALIDO}">
+					<div class="alert alert-warning text-center mt-4" role="alert">
+						Inserisci almeno 3 caratteri per cercare.
+					</div>
+				</c:if>
+				
+				<c:if test="${not empty STUDENT_LIST}">
 				<table class="table table-hover table-striped">
 					<thead class="table-dark">
 						<tr>
@@ -86,43 +110,34 @@ h2 {
 								<td>${tempStudent.firstName}</td>
 								<td>${tempStudent.lastName}</td>
 								<td>${tempStudent.email}</td>
-								<td><a href="${tempLink}"
-									class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-										Modifica </a> | <!-- Pulsante per aprire modale --> <a href="#"
-									class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-									data-bs-toggle="modal"
-									data-bs-target="#modalElimina${tempStudent.id}"> Elimina </a> <!-- MODALE per ogni studente -->
-									<div class="modal fade" id="modalElimina${tempStudent.id}"
-										tabindex="-1" aria-labelledby="modaleLabel${tempStudent.id}"
-										aria-hidden="true">
+								<!-- Pulsante per aprire modale --> 
+								<td><a href="${tempLink}" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"> Modifica </a> | 
+								<!-- MODALE per ogni studente -->
+								<a href="#" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" data-bs-toggle="modal" data-bs-target="#modalElimina${tempStudent.id}"> Elimina </a> 
+									<div class="modal fade" id="modalElimina${tempStudent.id}" tabindex="-1" aria-labelledby="modaleLabel${tempStudent.id}" aria-hidden="true">
 										<div class="modal-dialog modal-dialog-centered">
 											<div class="modal-content">
 
 												<div class="modal-header">
-													<h5 class="modal-title" id="modaleLabel${tempStudent.id}">Conferma
-														Eliminazione</h5>
-													<button type="button" class="btn-close"
-														data-bs-dismiss="modal" aria-label="Chiudi"></button>
+													<h5 class="modal-title" id="modaleLabel${tempStudent.id}">
+														Conferma Eliminazione
+													</h5>
+													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
 												</div>
 
 												<div class="modal-body">
-													Sei sicuro di voler eliminare lo studente <strong>${tempStudent.firstName}
-														${tempStudent.lastName}</strong>?
+													Sei sicuro di voler eliminare lo studente <strong>${tempStudent.firstName} ${tempStudent.lastName}</strong>?
 												</div>
 
 												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary"
-														data-bs-dismiss="modal">Annulla</button>
+													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
 
 													<form action="StudentControllerServlet" method="post">
 														<input type="hidden" name="command" value="DELETE">
-														<input type="hidden" name="studentId"
-															value="${tempStudent.id}">
+														<input type="hidden" name="studentId" value="${tempStudent.id}">
 														<button type="submit" class="btn btn-danger">Elimina</button>
 													</form>
 												</div>
-
-
 											</div>
 										</div>
 									</div></td>
@@ -130,12 +145,12 @@ h2 {
 						</c:forEach>
 					</tbody>
 				</table>
+				</c:if>
 			</div>
 		</div>
 	</div>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

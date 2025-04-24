@@ -55,6 +55,52 @@ public class StudentDbUtil {
 		}
 
 	}
+	
+	public List<Student> searchStudent(String term) throws Exception {
+		
+		List<Student> studentsRicerca = new ArrayList<>();
+		
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		ResultSet myRs = null;
+
+		try {
+			myConn = dataSource.getConnection();
+			
+			String searchTerm = "%" + term + "%";
+			
+			String sql = "SELECT * FROM student "
+					+ "WHERE first_name LIKE ? "
+					+ "OR last_name LIKE ? "
+					+ "OR email LIKE ? "
+					+ "ORDER BY last_name";
+			
+			myStmt = myConn.prepareStatement(sql);
+			
+			myStmt.setString(1, searchTerm);
+			myStmt.setString(2, searchTerm);
+			myStmt.setString(3, searchTerm);
+			
+			myRs = myStmt.executeQuery();
+			
+			while (myRs.next()) {
+				int id = myRs.getInt("id");
+				String firstName = myRs.getString("first_name");
+				String lastName = myRs.getString("last_name");
+				String email = myRs.getString("email");
+				
+				Student tempStudent = new Student (id, firstName, lastName, email);
+				 
+				studentsRicerca.add(tempStudent);
+				
+			}
+			
+			return studentsRicerca;
+			
+		}finally {
+			close(myConn, myStmt, myRs);
+		}
+	}
 
 	private void close(Connection myConn, Statement myStmt, ResultSet myRs) {
 		
@@ -218,5 +264,4 @@ public class StudentDbUtil {
 			close (myConn, myStmt, null);
 		}
 	}
-
 }

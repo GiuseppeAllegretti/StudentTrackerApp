@@ -65,7 +65,7 @@ label {
 						<label for="firstName" class="form-label">Nome</label> 
 						<input type=text class="form-control" name="firstName" id="firstName" placeholder="First Name" required> 
 						
-						<label for="firstName" class="form-label">Cognome</label> 
+						<label for="lastName" class="form-label">Cognome</label> 
 						<input type=text class="form-control" name="lastName" id="lastName" placeholder="Last Name" required> 
 						
 						<label for="firstName" class="form-label">Email</label> 
@@ -94,7 +94,7 @@ label {
 	      </div>
 	
 	      <div class="modal-body">
-	        Lo studente che stai cercando di inserire è già presente nel sistema.
+	        Lo studente che stai cercando di inserire è già presente nel database.
 	      </div>
 	
 	      <div class="modal-footer">

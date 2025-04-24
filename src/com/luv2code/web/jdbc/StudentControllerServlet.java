@@ -1,6 +1,7 @@
 package com.luv2code.web.jdbc;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -77,6 +78,9 @@ public class StudentControllerServlet extends HttpServlet {
 				case "LOAD":
 					loadStudent(request, response);
 					break;
+				case "SEARCH":
+					searchStudent (request, response);
+					break;
 				default:
 					listStudents(request, response);
 			}
@@ -84,6 +88,32 @@ public class StudentControllerServlet extends HttpServlet {
 		} catch (Exception exc) {
 			throw new ServletException(exc);
 		}
+	}
+
+	private void searchStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		String term = request.getParameter("term");
+
+	    if (term == null || term.trim().length() < 3) {
+	        request.setAttribute("STUDENT_LIST", new ArrayList<Student>());
+	        request.setAttribute("TERM_NON_VALIDO", true);
+	        
+	    } else {
+	    	
+	        List<Student> studentiTrovati = studentDbUtil.searchStudent(term);
+	        
+	        for (Student s : studentiTrovati) {
+	        	s.setFirstName(formatName(s.getFirstName()));
+	        	s.setLastName(formatName(s.getLastName()));
+	        	s.setEmail(formatName(s.getEmail()));
+	        }
+	        
+	        request.setAttribute("STUDENT_LIST", studentiTrovati);
+	    }
+
+	    RequestDispatcher dispatcher = request.getRequestDispatcher("/list-students.jsp");
+	    dispatcher.forward(request, response);
+		
 	}
 
 	private void deleteStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
