@@ -15,6 +15,7 @@ Funzionalità principali:
 3. Eliminazione con conferma tramite modale
 4. Controllo duplicati con modale di errore
 5. Visualizzazione studenti con tabella Bootstrap responsive
+6. Ricerca studenti tramite barra di ricerca
 
 Progetto esercitazione su su Java Web
 
