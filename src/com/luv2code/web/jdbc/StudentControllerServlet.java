@@ -93,22 +93,28 @@ public class StudentControllerServlet extends HttpServlet {
 	private void searchStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String term = request.getParameter("term");
+		String searchBy = request.getParameter("searchBy");
 
-	    if (term == null || term.trim().length() < 3) {
+	    if (term == null || term.trim().length() < 1) {
 	        request.setAttribute("STUDENT_LIST", new ArrayList<Student>());
 	        request.setAttribute("TERM_NON_VALIDO", true);
 	        
 	    } else {
 	    	
-	        List<Student> studentiTrovati = studentDbUtil.searchStudent(term);
-	        
-	        for (Student s : studentiTrovati) {
-	        	s.setFirstName(formatName(s.getFirstName()));
-	        	s.setLastName(formatName(s.getLastName()));
-	        	s.setEmail(formatName(s.getEmail()));
-	        }
-	        
-	        request.setAttribute("STUDENT_LIST", studentiTrovati);
+	    	try {
+	    		List<Student> risultati = studentDbUtil.searchStudentBy (term.trim(), searchBy);
+	    		request.setAttribute("STUDENT_LIST", risultati);
+	    		
+	    		for (Student r : risultati) {
+	    			r.setFirstName(formatName(r.getFirstName()));
+	    			r.setLastName(formatName(r.getLastName()));
+	    			r.setEmail(r.getEmail().toLowerCase());
+	    		}
+	    		
+	    	} catch (NumberFormatException e) {
+	    		request.setAttribute("TERM_NON_VALIDO", true);
+	            request.setAttribute("STUDENT_LIST", new ArrayList<Student>());
+	    	}
 	    }
 
 	    RequestDispatcher dispatcher = request.getRequestDispatcher("/list-students.jsp");
@@ -175,8 +181,6 @@ public class StudentControllerServlet extends HttpServlet {
 
 	    response.sendRedirect("StudentControllerServlet?command=LIST");
 	}
-
-
 
 	private void listStudents(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		

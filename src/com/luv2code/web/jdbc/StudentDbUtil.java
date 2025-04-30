@@ -56,50 +56,68 @@ public class StudentDbUtil {
 
 	}
 	
-	public List<Student> searchStudent(String term) throws Exception {
-		
+	public List<Student> searchStudentBy(String term, String campo) throws Exception {
+			
 		List<Student> studentsRicerca = new ArrayList<>();
-		
+			
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
-
+			
+		String campoValido;
+		switch (campo) {
+			case "id":
+				campoValido = "id";
+			    break;
+			case "firstName":
+			    campoValido = "first_name";
+			    break;
+			case "lastName":
+			    campoValido = "last_name";
+			    break;
+			case "email":
+			    campoValido = "email";
+			    break;
+			default:
+			    throw new IllegalArgumentException("Campo di ricerca non valido");
+		}
+	
 		try {
 			myConn = dataSource.getConnection();
-			
-			String searchTerm = "%" + term + "%";
-			
-			String sql = "SELECT * FROM student "
-					+ "WHERE first_name LIKE ? "
-					+ "OR last_name LIKE ? "
-					+ "OR email LIKE ? "
-					+ "ORDER BY last_name";
-			
-			myStmt = myConn.prepareStatement(sql);
-			
-			myStmt.setString(1, searchTerm);
-			myStmt.setString(2, searchTerm);
-			myStmt.setString(3, searchTerm);
-			
+				
+			String sql;
+			if (campoValido.equals("id")) {
+				sql = "SELECT * FROM student WHERE id=?";
+					
+				myStmt = myConn.prepareStatement(sql);
+				myStmt.setInt(1, Integer.parseInt(term));
+			} else {
+				sql = "SELECT * FROM student WHERE " + campoValido + " LIKE ?";
+					
+				myStmt = myConn.prepareStatement(sql);
+				myStmt.setString (1, term + "%");
+			}
+				
 			myRs = myStmt.executeQuery();
-			
+				
 			while (myRs.next()) {
 				int id = myRs.getInt("id");
 				String firstName = myRs.getString("first_name");
 				String lastName = myRs.getString("last_name");
 				String email = myRs.getString("email");
-				
+					
 				Student tempStudent = new Student (id, firstName, lastName, email);
-				 
+					 
 				studentsRicerca.add(tempStudent);
-				
+					
 			}
-			
+				
 			return studentsRicerca;
-			
+				
 		}finally {
 			close(myConn, myStmt, myRs);
 		}
+		
 	}
 
 	private void close(Connection myConn, Statement myStmt, ResultSet myRs) {

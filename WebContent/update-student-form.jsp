@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modifica studente</title>
+<title>Student Tracker App - Modifica</title>
 
 	<link
 		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -16,6 +16,10 @@
 	
 	body {
   		font-family: 'Poppins', sans-serif;
+	}
+	
+	h1 {
+	margin-left: 100px;
 	}
 
 	#linkNavbar {
@@ -46,7 +50,7 @@
 <body>
 	<nav class="navbar bg-body-tertiary">
 		<div class="container-fluid">
-    		<a id="linkNavbar"class="navbar-brand" href="StudentControllerServlet"><h1>Modifica studente!</h1></a>
+    		<a id="linkNavbar"class="navbar-brand" href="StudentControllerServlet"><h1>Modifica studente</h1></a>
   		</div>
 	</nav>
 

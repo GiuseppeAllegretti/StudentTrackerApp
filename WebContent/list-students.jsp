@@ -20,6 +20,7 @@
 <style>
 body {
 	font-family: 'Poppins', sans-serif;
+	margin-top: 150px;
 }
 
 #tabella {
@@ -28,6 +29,14 @@ body {
 
 #linkNavbar {
 	padding: 20px;
+}
+
+#containerItemNav {
+	margin-right: 100px;
+}
+
+h1 {
+	margin-left: 100px;
 }
 
 h2 {
@@ -42,30 +51,33 @@ h2 {
 
 <body>
 
-	<nav class="navbar bg-body-tertiary">
+	<nav class="navbar bg-body-tertiary fixed-top">
 		<div class="container-fluid d-flex align-items-center">
-			<a id="linkNavbar" class="navbar-brand" href="StudentControllerServlet"><h1>Student tracker App</h1></a>
+			<a id="linkNavbar" class="navbar-brand" href="StudentControllerServlet"><h1>Student Tracker App</h1></a>
 			
 			<div class="d-flex ms-auto" id="containerItemNav">
+			
 				<div class="me-2">
 					<input type="button" class="btn btn-outline-success" value="Aggiungi Studente"
 						onclick="window.location.href='add-student-form.jsp'; return false;">
 				</div>
-				<div>
-					<form action="StudentControllerServlet" method="GET" class="d-flex" >
-							<input class="form-control me-2" name="term" type="search" placeholder="Cerca studente" aria-label="Cerca">
-							<input type="hidden" name="command" value="SEARCH">
-							
-							<input type="submit" class="btn btn-outline-dark" value="cerca">
-					</form>
+			
+				<div class="btn-group">
+				  	<button type="button" class="btn btn-primary dropdown-toggle me-2" data-bs-toggle="dropdown" aria-expanded="false">
+				    	Cerca per
+				  	</button>
+				  	<ul class="dropdown-menu">
+				    	<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalRicerca" data-searchby="id">ID</a></li>
+					    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalRicerca" data-searchby="firstName">Nome</a></li>
+					    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalRicerca" data-searchby="lastName">Cognome</a></li>
+					    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalRicerca" data-searchby="email">Email</a></li>
+				  	</ul>
 				</div>
 				
 			</div>
 		</div>
 	</nav>
 	
-	
-
 	<div class="container" id="tabella">
 		<div class="row justify-content-center">
 			<div class="col-12 col-lg-10">
@@ -77,7 +89,7 @@ h2 {
 				</c:if>
 				<c:if test="${TERM_NON_VALIDO}">
 					<div class="alert alert-warning text-center mt-4" role="alert">
-						Inserisci almeno 3 caratteri per cercare.
+						Inserisci almeno un carattere per cercare.
 					</div>
 				</c:if>
 				
@@ -90,7 +102,6 @@ h2 {
 							<th scope="col">Cognome</th>
 							<th scope="col">Email</th>
 							<th scope="col">Azioni</th>
-							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -149,8 +160,61 @@ h2 {
 			</div>
 		</div>
 	</div>
+	
+	<!-- MODALE RICERCA STUDENTE -->
+	<div class="modal fade" id="modalRicerca" tabindex="-1" aria-labelledby="modalRicercaLabel" aria-hidden="true">
+	  	<div class="modal-dialog modal-dialog-centered">
+	    	<div class="modal-content">
+	
+		      	<div class="modal-header">
+		        	<h5 class="modal-title" id="modalTitolo">Ricerca Studente</h5>
+		        	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+		      	</div>
+		
+		      	<form action="StudentControllerServlet" method="GET">
+		        	<input type="hidden" name="command" value="SEARCH">
+		        	<input type="hidden" name="searchBy" id="searchBy">
+		        	<div class="modal-body">
+		          		<input type="search" class="form-control" name="term" id="campoTermine" placeholder="Inserisci valore..." required minlength="1">
+		        	</div>
+		        	<div class="modal-footer">
+		          		<button type="submit" class="btn btn-dark">Cerca</button>
+		        	</div>
+		      	</form>
+	
+	    	</div>
+	  	</div>
+	</div>
+		
+	<script>
+	  	const ricercaModal = document.getElementById('modalRicerca');
+	  	const titoloModal = document.getElementById('modalTitolo');
+	  	const inputTipo = document.getElementById('searchBy');
+	
+	  	ricercaModal.addEventListener('show.bs.modal', function (event) {
+		    const button = event.relatedTarget;
+		    const tipo = button.getAttribute('data-searchby');
+	
+		    inputTipo.value = tipo;
+		
+		    // Titoli personalizzati
+		    const titoli = {
+		      	id: "Ricerca per ID",
+		      	firstName: "Ricerca per Nome",
+		      	lastName: "Ricerca per Cognome",
+		      	email: "Ricerca per Email"
+		    };
+		    titoloModal.textContent = titoli[tipo] || "Ricerca Studente";
+		});
+	</script>
 
+	<script>
+  		const ricercaModal = document.getElementById('modalRicerca');
+ 			ricercaModal.addEventListener('shown.bs.modal', function () {
+    			ricercaModal.querySelector('input[name="term"]').focus();
+  			});
+	</script>
+	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

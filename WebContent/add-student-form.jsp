@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aggiungi studente</title>
+<title>Student Tracker App - Aggiungi</title>
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
@@ -34,6 +34,10 @@ label {
 	font-weight: bold;
 }
 
+h1 {
+	margin-left: 100px;
+}
+
 #btnAggiungi {
 	margin-top: 15px;
 }
@@ -49,7 +53,7 @@ label {
 	<nav class="navbar bg-body-tertiary">
 		<div class="container-fluid">
 			<a id="linkNavbar" class="navbar-brand"
-				href="StudentControllerServlet"><h1>Aggiungi studente!</h1></a>
+				href="StudentControllerServlet"><h1>Aggiungi studente</h1></a>
 		</div>
 	</nav>
 	
