@@ -46,6 +46,15 @@ h2 {
 	padding: 10px;
 }
 
+table thead th {
+	position: sticky;
+	top: 0;
+	background-color: #212529; /* stesso colore della tua thead .table-dark */
+	color: white;
+	z-index: 10;
+}
+
+
 </style>
 </head>
 
@@ -94,68 +103,70 @@ h2 {
 				</c:if>
 				
 				<c:if test="${not empty STUDENT_LIST}">
-				<table class="table table-hover table-striped">
-					<thead class="table-dark">
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">Nome</th>
-							<th scope="col">Cognome</th>
-							<th scope="col">Email</th>
-							<th scope="col">Azioni</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="tempStudent" items="${STUDENT_LIST}">
-							<c:url var="tempLink" value="StudentControllerServlet">
-								<c:param name="command" value="LOAD" />
-								<c:param name="studentId" value="${tempStudent.id}" />
-							</c:url>
-
-							<c:url var="deleteLink" value="StudentControllerServlet">
-								<c:param name="command" value="DELETE" />
-								<c:param name="studentId" value="${tempStudent.id}" />
-							</c:url>
-
+				<div style="max-height: 700px; overflow-y: auto;">
+					<table class="table table-hover table-striped">
+						<thead class="table-dark">
 							<tr>
-								<th scope="row">${tempStudent.id}</th>
-								<td>${tempStudent.firstName}</td>
-								<td>${tempStudent.lastName}</td>
-								<td>${tempStudent.email}</td>
-								<!-- Pulsante per aprire modale --> 
-								<td><a href="${tempLink}" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"> Modifica </a> | 
-								<!-- MODALE per ogni studente -->
-								<a href="#" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" data-bs-toggle="modal" data-bs-target="#modalElimina${tempStudent.id}"> Elimina </a> 
-									<div class="modal fade" id="modalElimina${tempStudent.id}" tabindex="-1" aria-labelledby="modaleLabel${tempStudent.id}" aria-hidden="true">
-										<div class="modal-dialog modal-dialog-centered">
-											<div class="modal-content">
-
-												<div class="modal-header">
-													<h5 class="modal-title" id="modaleLabel${tempStudent.id}">
-														Conferma Eliminazione
-													</h5>
-													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
-												</div>
-
-												<div class="modal-body">
-													Sei sicuro di voler eliminare lo studente <strong>${tempStudent.firstName} ${tempStudent.lastName}</strong>?
-												</div>
-
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-
-													<form action="StudentControllerServlet" method="post">
-														<input type="hidden" name="command" value="DELETE">
-														<input type="hidden" name="studentId" value="${tempStudent.id}">
-														<button type="submit" class="btn btn-danger">Elimina</button>
-													</form>
+								<th scope="col">#</th>
+								<th scope="col">Nome</th>
+								<th scope="col">Cognome</th>
+								<th scope="col">Email</th>
+								<th scope="col">Azioni</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="tempStudent" items="${STUDENT_LIST}">
+								<c:url var="tempLink" value="StudentControllerServlet">
+									<c:param name="command" value="LOAD" />
+									<c:param name="studentId" value="${tempStudent.id}" />
+								</c:url>
+	
+								<c:url var="deleteLink" value="StudentControllerServlet">
+									<c:param name="command" value="DELETE" />
+									<c:param name="studentId" value="${tempStudent.id}" />
+								</c:url>
+	
+								<tr>
+									<th scope="row">${tempStudent.id}</th>
+									<td>${tempStudent.firstName}</td>
+									<td>${tempStudent.lastName}</td>
+									<td>${tempStudent.email}</td>
+									<!-- Pulsante per aprire modale --> 
+									<td><a href="${tempLink}" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"> Modifica </a> | 
+									<!-- MODALE per ogni studente -->
+									<a href="#" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" data-bs-toggle="modal" data-bs-target="#modalElimina${tempStudent.id}"> Elimina </a> 
+										<div class="modal fade" id="modalElimina${tempStudent.id}" tabindex="-1" aria-labelledby="modaleLabel${tempStudent.id}" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-centered">
+												<div class="modal-content">
+	
+													<div class="modal-header">
+														<h5 class="modal-title" id="modaleLabel${tempStudent.id}">
+															Conferma Eliminazione
+														</h5>
+														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+													</div>
+	
+													<div class="modal-body">
+														Sei sicuro di voler eliminare lo studente <strong>${tempStudent.firstName} ${tempStudent.lastName}</strong>?
+													</div>
+	
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+	
+														<form action="StudentControllerServlet" method="post">
+															<input type="hidden" name="command" value="DELETE">
+															<input type="hidden" name="studentId" value="${tempStudent.id}">
+															<button type="submit" class="btn btn-danger">Elimina</button>
+														</form>
+													</div>
 												</div>
 											</div>
-										</div>
-									</div></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+										</div></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 				</c:if>
 			</div>
 		</div>
