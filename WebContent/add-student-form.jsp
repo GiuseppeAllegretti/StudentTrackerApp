@@ -1,65 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Tracker App - Aggiungi</title>
-
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
-	crossorigin="anonymous">
-
-<link
-	href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-	rel="stylesheet">
-
-
-<style>
-body {
-	font-family: 'Poppins', sans-serif;
-}
-
-#linkNavbar {
-	padding: 20px;
-}
-
-form {
-	margin-top: 50px;
-}
-
-label {
-	margin-top: 15px;
-	font-weight: bold;
-}
-
-h1 {
-	margin-left: 100px;
-}
-
-#btnAggiungi {
-	margin-top: 15px;
-}
-
-.allineamentoDx {
-	text-align: right;
-}
-</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Student Tracker App - Aggiungi</title>
+	
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+	
+	
+	<style>
+		body {
+			font-family: 'Poppins', sans-serif;
+		}
+		
+		#linkNavbar {
+			padding: 20px;
+		}
+		
+		form {
+			margin-top: 50px;
+		}
+		
+		label {
+			margin-top: 15px;
+			font-weight: bold;
+		}
+		
+		h1 {
+			margin-left: 100px;
+		}
+		
+		#btnAggiungi {
+			margin-top: 15px;
+		}
+		
+		.allineamentoDx {
+			text-align: right;
+		}
+	</style>
 
 </head>
 
 <body>
 	<nav class="navbar bg-body-tertiary">
 		<div class="container-fluid">
-			<a id="linkNavbar" class="navbar-brand"
-				href="StudentControllerServlet"><h1>Aggiungi studente</h1></a>
+			<a id="linkNavbar" class="navbar-brand" href="StudentControllerServlet"><h1>Aggiungi studente</h1></a>
 		</div>
 	</nav>
 	
 	<div>
 		<div class="row">
-			<div class="col"></div>
+			<div class="col">
+			</div>
 
 			<div class="col-6">
 				<form action="StudentControllerServlet" method="POST">
@@ -83,30 +76,31 @@ h1 {
 				</form>
 			</div>
 
-			<div class="col"></div>
+			<div class="col">
+			</div>
 		</div>
 	</div>
 	
 	<!-- MODALE DI ERRORE DUPLICATO -->
 	<div class="modal fade" id="erroreDuplicato" tabindex="-1" aria-labelledby="erroreDuplicatoLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered">
-	    <div class="modal-content">
+		<div class="modal-dialog modal-dialog-centered">
+	    	<div class="modal-content">
 	
-	      <div class="modal-header bg-warning text-dark">
-	        <h5 class="modal-title" id="erroreDuplicatoLabel">Studente già esistente</h5>
-	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
-	      </div>
+	      		<div class="modal-header bg-warning text-dark">
+	        		<h5 class="modal-title" id="erroreDuplicatoLabel">Studente già esistente</h5>
+	        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+	      		</div>
 	
-	      <div class="modal-body">
-	        Lo studente che stai cercando di inserire è già presente nel database.
-	      </div>
+	      		<div class="modal-body">
+	        		Lo studente che stai cercando di inserire è già presente nel database.
+	      		</div>
 	
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-	      </div>
+	      		<div class="modal-footer">
+	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+	      		</div>
 	
-	    </div>
-	  </div>
+	    	</div>
+	  	</div>
 	</div>
 	
 	<!-- per modale errore nome con numeri -->
