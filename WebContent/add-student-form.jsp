@@ -108,19 +108,51 @@ h1 {
 	    </div>
 	  </div>
 	</div>
-
+	
+	<!-- per modale errore nome con numeri -->
+	<div class="modal fade" id="erroreNome" tabindex="-1" aria-hidden="true">
+  		<div class="modal-dialog modal-dialog-centered">
+	    	<div class="modal-content">
+		
+		      	<div class="modal-header bg-danger text-white">
+		        	<h5 class="modal-title">Errore di validazione</h5>
+		        	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+		      	</div>
+		
+		      	<div class="modal-body">
+		        	Il <b>nome</b> o il <b>cognome</b> non possono contenere numeri o simboli. <b>Inserisci solo lettere</b>.
+		      	</div>
+		
+		      	<div class="modal-footer">
+		        	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+		      	</div>
+	
+	    	</div>
+  		</div>
+	</div>
+	
+	<!-- deve stare sopra gli script da eseguire -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-		crossorigin="anonymous"></script>
-		
+		crossorigin="anonymous">
+	</script>
+	
+	<!-- Script visualizzazione errore validazione nome -->
 	<script>
 		const urlParams = new URLSearchParams(window.location.search);
+
+		if (urlParams.get("errore") === "nome") {
+			const modal = new bootstrap.Modal(document.getElementById('erroreNome'));
+			modal.show();
+		}
+
 		if (urlParams.get("duplicate") === "true") {
 			const modal = new bootstrap.Modal(document.getElementById('erroreDuplicato'));
 			modal.show();
 		}
 	</script>
-		
+
+	
 </body>
 </html>

@@ -3,59 +3,55 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Tracker App</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Student Tracker App</title>
 
-<!-- Bootstrap CSS -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+	<!-- Bootstrap CSS -->
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-<!-- Google Fonts -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-	rel="stylesheet">
-
-<style>
-body {
-	font-family: 'Poppins', sans-serif;
-	margin-top: 150px;
-}
-
-#tabella {
-	margin-top: 30px;
-}
-
-#linkNavbar {
-	padding: 20px;
-}
-
-#containerItemNav {
-	margin-right: 100px;
-}
-
-h1 {
-	margin-left: 100px;
-}
-
-h2 {
-	text-align: center;
-	background-color: grey;
-	color: white;
-	padding: 10px;
-}
-
-table thead th {
-	position: sticky;
-	top: 0;
-	background-color: #212529; /* stesso colore della tua thead .table-dark */
-	color: white;
-	z-index: 10;
-}
-
-
-</style>
+	<style>
+		body {
+			font-family: 'Poppins', sans-serif;
+			margin-top: 150px;
+		}
+		
+		#tabella {
+			margin-top: 30px;
+		}
+		
+		#linkNavbar {
+			padding: 20px;
+		}
+		
+		#containerItemNav {
+			margin-right: 100px;
+		}
+		
+		h1 {
+			margin-left: 100px;
+		}
+		
+		h2 {
+			text-align: center;
+			background-color: grey;
+			color: white;
+			padding: 10px;
+		}
+		
+		table thead th {
+			position: sticky;
+			top: 0;
+			background-color: #212529; /* stesso colore della tua thead .table-dark */
+			color: white;
+			z-index: 10;
+		}
+		
+	
+	</style>
 </head>
 
 <body>
@@ -67,8 +63,7 @@ table thead th {
 			<div class="d-flex ms-auto" id="containerItemNav">
 			
 				<div class="me-2">
-					<input type="button" class="btn btn-outline-success" value="Aggiungi Studente"
-						onclick="window.location.href='add-student-form.jsp'; return false;">
+					<input type="button" class="btn btn-outline-success" value="Aggiungi Studente" onclick="window.location.href='add-student-form.jsp'; return false;">
 				</div>
 			
 				<div class="btn-group">
@@ -76,11 +71,12 @@ table thead th {
 				    	Cerca per
 				  	</button>
 				  	<ul class="dropdown-menu">
-				    	<li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalRicerca" data-searchby="id">ID</a></li>
-					    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalRicerca" data-searchby="firstName">Nome</a></li>
-					    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalRicerca" data-searchby="lastName">Cognome</a></li>
-					    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalRicerca" data-searchby="email">Email</a></li>
-				  	</ul>
+  						<li><a class="dropdown-item" href="#" onclick="apriModalRicerca('id')">ID</a></li>
+						<li><a class="dropdown-item" href="#" onclick="apriModalRicerca('firstName')">Nome</a></li>
+						<li><a class="dropdown-item" href="#" onclick="apriModalRicerca('lastName')">Cognome</a></li>
+						<li><a class="dropdown-item" href="#" onclick="apriModalRicerca('email')">Email</a></li>
+					</ul>
+
 				</div>
 				
 			</div>
@@ -196,35 +192,34 @@ table thead th {
 	    	</div>
 	  	</div>
 	</div>
-		
-	<script>
-	  	const ricercaModal = document.getElementById('modalRicerca');
-	  	const titoloModal = document.getElementById('modalTitolo');
-	  	const inputTipo = document.getElementById('searchBy');
-	
-	  	ricercaModal.addEventListener('show.bs.modal', function (event) {
-		    const button = event.relatedTarget;
-		    const tipo = button.getAttribute('data-searchby');
-	
-		    inputTipo.value = tipo;
-		
-		    // Titoli personalizzati
-		    const titoli = {
-		      	id: "Ricerca per ID",
-		      	firstName: "Ricerca per Nome",
-		      	lastName: "Ricerca per Cognome",
-		      	email: "Ricerca per Email"
-		    };
-		    titoloModal.textContent = titoli[tipo] || "Ricerca Studente";
-		});
-	</script>
 
 	<script>
   		const ricercaModal = document.getElementById('modalRicerca');
- 			ricercaModal.addEventListener('shown.bs.modal', function () {
-    			ricercaModal.querySelector('input[name="term"]').focus();
-  			});
+  		const titoloModal = document.getElementById('modalTitolo');
+  		const inputTipo = document.getElementById('searchBy');
+
+  		function apriModalRicerca(campo) {
+    		inputTipo.value = campo;
+
+    		// Imposta il titolo dinamico
+    		const titoli = {
+      			id: "Ricerca per ID",
+      			firstName: "Ricerca per Nome",
+      			lastName: "Ricerca per Cognome",
+      			email: "Ricerca per Email"
+    		};
+    		titoloModal.textContent = titoli[campo] || "Ricerca Studente";
+
+    		// Mostra la modale
+    		const modal = new bootstrap.Modal(ricercaModal);
+    		modal.show();
+  		}
+
+  		ricercaModal.addEventListener('shown.bs.modal', function () {
+    		ricercaModal.querySelector('input[name="term"]').focus();
+  		});
 	</script>
+
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 </body>

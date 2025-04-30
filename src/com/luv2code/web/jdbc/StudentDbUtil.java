@@ -56,7 +56,7 @@ public class StudentDbUtil {
 
 	}
 	
-	public List<Student> searchStudentBy(String term, String campo) throws Exception {
+	public List<Student> searchStudentBy(String term, String searchBy) throws Exception {
 			
 		List<Student> studentsRicerca = new ArrayList<>();
 			
@@ -65,7 +65,7 @@ public class StudentDbUtil {
 		ResultSet myRs = null;
 			
 		String campoValido;
-		switch (campo) {
+		switch (searchBy) {
 			case "id":
 				campoValido = "id";
 			    break;

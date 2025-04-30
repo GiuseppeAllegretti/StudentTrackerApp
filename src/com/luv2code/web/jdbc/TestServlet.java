@@ -48,6 +48,5 @@ public class TestServlet extends HttpServlet {
 		} catch (Exception exc) {
 			exc.printStackTrace();
 		}
-		// 3. 
 	}
 }

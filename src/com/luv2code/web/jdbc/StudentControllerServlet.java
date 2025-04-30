@@ -140,9 +140,17 @@ public class StudentControllerServlet extends HttpServlet {
 		
 		Student theStudent = new Student (id, firstName, lastName, email);
 		
+		if (!firstName.matches("[a-zA-Z]+") || !lastName.matches("[a-zA-Z]+")) {
+			request.setAttribute("THE_STUDENT", theStudent); 
+			request.setAttribute("ERRORE_NOME", true);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/update-student-form.jsp");
+			dispatcher.forward(request, response);
+        	return;
+        }
+		
 		studentDbUtil.updateStudent(theStudent);
 		
-		listStudents(request, response);
+		response.sendRedirect("StudentControllerServlet?command=LIST");
 	}
 
 	private void loadStudent(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -174,8 +182,13 @@ public class StudentControllerServlet extends HttpServlet {
 	            response.sendRedirect("add-student-form.jsp?duplicate=true");
 	            return;
 	        }
+	        
+	        if (!firstName.matches("[a-zA-ZàèìòùÀÈÌÒÙ'\\s]+") || !lastName.matches("[a-zA-ZàèìòùÀÈÌÒÙ'\\s]+")) {
+	        	response.sendRedirect("add-student-form.jsp?errore=nome");
+	        	return;
+	        }
 
-	        // Non è duplicato -> salva
+	        // Non è duplicato o nome e cognome non contengono numeri -> salva
 	        studentDbUtil.addStudent(theStudent);
 	    }
 
