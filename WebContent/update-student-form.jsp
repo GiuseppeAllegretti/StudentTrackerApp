@@ -109,6 +109,28 @@
 	    	</div>
   		</div>
 	</div>
+	
+	<!-- MODALE DI ERRORE EMAIL GIA IN USO -->
+	<div class="modal fade" id="erroreDuplicato" tabindex="-1" aria-labelledby="erroreDuplicatoLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+	    	<div class="modal-content">
+	
+	      		<div class="modal-header bg-warning text-dark">
+	        		<h5 class="modal-title" id="erroreDuplicatoLabel">Email già in uso</h5>
+	        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+	      		</div>
+	
+	      		<div class="modal-body">
+	        		L'email che stai cercando di modificare è gia in uso da un altro studente.
+	      		</div>
+	
+	      		<div class="modal-footer">
+	        		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+	      		</div>
+	
+	    	</div>
+	  	</div>
+	</div>
 
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
@@ -124,5 +146,12 @@
   		</script>
 	</c:if>
 
+	<script>
+		if (urlParams.get("duplicate") === "true") {
+			const modal = new bootstrap.Modal(document.getElementById('erroreDuplicato'));
+			modal.show();
+		}
+	</script>
+	
 </body>
 </html>

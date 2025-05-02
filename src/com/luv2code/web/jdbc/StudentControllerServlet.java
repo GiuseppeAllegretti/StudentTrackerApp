@@ -140,12 +140,17 @@ public class StudentControllerServlet extends HttpServlet {
 		
 		Student theStudent = new Student (id, firstName, lastName, email);
 		
-		if (!firstName.matches("[a-zA-Z]+") || !lastName.matches("[a-zA-Z]+")) {
+		if (!firstName.matches("[a-zA-ZàèìòùÀÈÌÒÙ'\\s]+") || !lastName.matches("[a-zA-ZàèìòùÀÈÌÒÙ'\\s]+")) {
 			request.setAttribute("THE_STUDENT", theStudent); 
 			request.setAttribute("ERRORE_NOME", true);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/update-student-form.jsp");
 			dispatcher.forward(request, response);
         	return;
+        }
+		
+		if (studentDbUtil.isEmailAlreadyUsed(email)) {
+            response.sendRedirect("add-student-form.jsp?duplicate=true");
+            return;
         }
 		
 		studentDbUtil.updateStudent(theStudent);
@@ -177,8 +182,16 @@ public class StudentControllerServlet extends HttpServlet {
 
 	        Student theStudent = new Student(firstName, lastName, email);
 
+	        /*
 	        // Controllo duplicato
 	        if (studentDbUtil.isDuplicate(theStudent)) {
+	            response.sendRedirect("add-student-form.jsp?duplicate=true");
+	            return;
+	        }
+	        */
+	        
+	        // controllo email gia in uso da uno studente
+	        if (studentDbUtil.isEmailAlreadyUsed(email)) {
 	            response.sendRedirect("add-student-form.jsp?duplicate=true");
 	            return;
 	        }

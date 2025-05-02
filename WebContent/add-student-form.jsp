@@ -81,18 +81,18 @@
 		</div>
 	</div>
 	
-	<!-- MODALE DI ERRORE DUPLICATO -->
+	<!-- MODALE DI ERRORE EMAIL GIA IN USO -->
 	<div class="modal fade" id="erroreDuplicato" tabindex="-1" aria-labelledby="erroreDuplicatoLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 	    	<div class="modal-content">
 	
 	      		<div class="modal-header bg-warning text-dark">
-	        		<h5 class="modal-title" id="erroreDuplicatoLabel">Studente già esistente</h5>
+	        		<h5 class="modal-title" id="erroreDuplicatoLabel">Email già in uso</h5>
 	        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
 	      		</div>
 	
 	      		<div class="modal-body">
-	        		Lo studente che stai cercando di inserire è già presente nel database.
+	        		L'email che stai cercando di registrare è gia in uso da un altro studente.
 	      		</div>
 	
 	      		<div class="modal-footer">

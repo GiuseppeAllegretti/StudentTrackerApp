@@ -165,6 +165,7 @@ public class StudentDbUtil {
 		}
 	}
 	
+	/*
 	public boolean isDuplicate(Student student) throws Exception {
 	    boolean isDuplicate = false;
 
@@ -194,6 +195,24 @@ public class StudentDbUtil {
 	        close(conn, stmt, rs);
 	    }
 	}
+	*/
+	
+	public boolean isEmailAlreadyUsed(String email) throws Exception {
+	    try (Connection conn = dataSource.getConnection();
+	         PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) FROM student WHERE email=?")) {
+
+	        stmt.setString(1, email);
+
+	        try (ResultSet rs = stmt.executeQuery()) {
+	            if (rs.next()) {
+	                return rs.getInt(1) > 0;
+	            }
+	        }
+	    }
+
+	    return false;
+	}
+
 
 
 	public Student getStudent(String theStudentId) throws Exception {
