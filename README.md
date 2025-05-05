@@ -10,12 +10,13 @@ Tecnologie utilizzate
 - Eclipse IDE
 
 Funzionalità principali:
-1. Aggiunta studente
-2. Modifica studente
-3. Eliminazione con conferma tramite modale
-4. Controllo duplicati con modale di errore
-5. Visualizzazione studenti con tabella Bootstrap responsive
-6. Ricerca studenti per (id, nome, cognome, email) con un dropdown-button che apre una modale per la ricerca
+1. Pagina di Login (con super-admin) + bottone Logout
+2. Aggiunta studente
+3. Modifica studente
+4. Eliminazione con conferma tramite modale
+5. Controllo duplicati con modale di errore
+6. Visualizzazione studenti con tabella Bootstrap responsive
+7. Ricerca studenti per (id, nome, cognome, email) con un dropdown-button che apre una modale per la ricerca
 
 Progetto esercitazione su su Java Web
 
