@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Student Tracker App - Aggiungi</title>
+	<title>Aggiungi | Student Tracker App</title>
 	
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -38,6 +38,7 @@
 		.allineamentoDx {
 			text-align: right;
 		}
+
 	</style>
 
 </head>
@@ -92,7 +93,7 @@
 	      		</div>
 	
 	      		<div class="modal-body">
-	        		L'email che stai cercando di registrare è gia in uso da un altro studente.
+	        		L'email che stai cercando di registrare è <b>gia in uso</b> da un altro studente.
 	      		</div>
 	
 	      		<div class="modal-footer">
@@ -102,7 +103,7 @@
 	    	</div>
 	  	</div>
 	</div>
-	
+
 	<!-- per modale errore nome con numeri -->
 	<div class="modal fade" id="erroreNome" tabindex="-1" aria-hidden="true">
   		<div class="modal-dialog modal-dialog-centered">

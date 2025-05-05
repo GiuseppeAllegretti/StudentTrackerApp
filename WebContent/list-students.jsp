@@ -79,6 +79,10 @@
 
 				</div>
 				
+				<div>
+					<input type="button" class="btn btn-outline-danger" onclick="window.location.href='LogoutServlet'; return false;" value="Logout">
+				</div>
+				
 			</div>
 		</div>
 	</nav>

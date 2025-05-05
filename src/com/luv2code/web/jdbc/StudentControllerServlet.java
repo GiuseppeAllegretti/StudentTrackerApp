@@ -1,6 +1,7 @@
 package com.luv2code.web.jdbc;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -182,26 +183,19 @@ public class StudentControllerServlet extends HttpServlet {
 
 	        Student theStudent = new Student(firstName, lastName, email);
 
-	        /*
-	        // Controllo duplicato
-	        if (studentDbUtil.isDuplicate(theStudent)) {
-	            response.sendRedirect("add-student-form.jsp?duplicate=true");
-	            return;
-	        }
-	        */
 	        
 	        // controllo email gia in uso da uno studente
 	        if (studentDbUtil.isEmailAlreadyUsed(email)) {
 	            response.sendRedirect("add-student-form.jsp?duplicate=true");
 	            return;
 	        }
-	        
+  
 	        if (!firstName.matches("[a-zA-ZàèìòùÀÈÌÒÙ'\\s]+") || !lastName.matches("[a-zA-ZàèìòùÀÈÌÒÙ'\\s]+")) {
 	        	response.sendRedirect("add-student-form.jsp?errore=nome");
 	        	return;
 	        }
 
-	        // Non è duplicato o nome e cognome non contengono numeri -> salva
+	        // Non è duplicato o nome e cognome non contengono numeri o caratteri speciali -> salva
 	        studentDbUtil.addStudent(theStudent);
 	    }
 
