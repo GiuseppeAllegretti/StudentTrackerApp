@@ -192,7 +192,7 @@
 		        	<input type="hidden" name="command" value="SEARCH">
 		        	<input type="hidden" name="searchBy" id="searchBy">
 		        	<div class="modal-body">
-		          		<input type="search" class="form-control" name="term" id="campoTermine" placeholder="Inserisci valore..." required minlength="1">
+		          		<input type="search" class="form-control" name="term" id="campoTermine" placeholder="Inserisci valore..." minlength="1" required>
 		        	</div>
 		        	<div class="modal-footer">
 		          		<button type="submit" class="btn btn-dark">Cerca</button>
