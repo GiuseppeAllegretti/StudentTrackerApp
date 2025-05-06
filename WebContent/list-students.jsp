@@ -19,6 +19,10 @@
 			margin-top: 150px;
 		}
 		
+		nav {
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+		}
+		
 		#tabella {
 			margin-top: 30px;
 		}

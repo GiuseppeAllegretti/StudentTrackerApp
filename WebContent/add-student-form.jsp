@@ -14,6 +14,10 @@
 			font-family: 'Poppins', sans-serif;
 		}
 		
+		nav {
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+		}
+		
 		#linkNavbar {
 			padding: 20px;
 		}

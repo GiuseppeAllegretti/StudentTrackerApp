@@ -17,6 +17,10 @@
 	  		font-family: 'Poppins', sans-serif;
 		}
 		
+		nav {
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+		}
+		
 		h1 {
 		margin-left: 100px;
 		}
@@ -76,6 +80,7 @@
 						<input type=email class="form-control" name="email" id="email" value="${THE_STUDENT.email}" placeholder="email@example.com" required> 
 						
 						<div class="allineamentoDx">
+							<input type="button" id="btnModifica" class="btn btn-outline-danger"  value="Annullla" onclick="window.location.href='StudentControllerServlet'; return false;">
 							<input type="submit" id="btnModifica" class="btn btn-outline-primary" value="Modifica">
 						</div>
 					</div>
