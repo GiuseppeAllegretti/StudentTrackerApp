@@ -35,16 +35,23 @@
 			margin-left: 100px;
 		}
 		
-		#btnAggiungi {
+		#btnAggiungi, #btnAnnulla {
 			margin-top: 15px;
 		}
 		
 		.allineamentoDx {
 			text-align: right;
 		}
-
+		
+		.login-container {
+			margin-top: 100px;
+			background: #fff;
+			padding: 40px;
+			border-radius: 20px;
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+		}
 	</style>
-
+	
 </head>
 
 <body>
@@ -63,7 +70,7 @@
 				<form action="StudentControllerServlet" method="POST">
 					<input type="hidden" name="command" value="ADD">
 					
-					<div class="mb-3">
+					<div class="login-container mb-3">
 						<label for="firstName" class="form-label">Nome</label> 
 						<input type=text class="form-control" name="firstName" id="firstName" placeholder="First Name" required> 
 						
@@ -74,8 +81,8 @@
 						<input type=email class="form-control" name="email" id="email" placeholder="email@example.com" required>
 
 						<div class="allineamentoDx">
-							<input type="submit" id="btnAggiungi"
-								class="btn btn-outline-success" value="Aggiungi">
+							<input type="button" id="btnAnnulla" class="btn btn-outline-danger"  value="Annullla" onclick="window.location.href='StudentControllerServlet'; return false;">
+							<input type="submit" id="btnAggiungi" class="btn btn-outline-success" value="Aggiungi">
 						</div>
 					</div>
 				</form>

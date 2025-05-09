@@ -38,12 +38,20 @@
 			font-weight: bold;
 		}
 		
-		#btnModifica {
+		#btnModifica, #btnAnnulla {
 			margin-top: 15px;
 		}
 		
 		.allineamentoDx {
 			text-align: right;
+		}
+		
+		.login-container {
+			margin-top: 100px;
+			background: #fff;
+			padding: 40px;
+			border-radius: 20px;
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 		}
 		
 	</style>
@@ -69,7 +77,7 @@
 					<input type="hidden" name="command" value="UPDATE">
 					<input type="hidden" name="studentId" value="${THE_STUDENT.id}">
 					
-					<div class="mb-3">
+					<div class="login-container mb-3">
 						<label for="firstName" class="form-label">Nome</label> 
 						<input type=text class="form-control" name="firstName" id="firstName" value="${THE_STUDENT.firstName}" placeholder="First Name" required> 
 						
@@ -80,7 +88,7 @@
 						<input type=email class="form-control" name="email" id="email" value="${THE_STUDENT.email}" placeholder="email@example.com" required> 
 						
 						<div class="allineamentoDx">
-							<input type="button" id="btnModifica" class="btn btn-outline-danger"  value="Annullla" onclick="window.location.href='StudentControllerServlet'; return false;">
+							<input type="button" id="btnAnnulla" class="btn btn-outline-danger"  value="Annullla" onclick="window.location.href='StudentControllerServlet'; return false;">
 							<input type="submit" id="btnModifica" class="btn btn-outline-primary" value="Modifica">
 						</div>
 					</div>

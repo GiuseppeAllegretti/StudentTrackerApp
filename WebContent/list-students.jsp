@@ -29,6 +29,8 @@
 		
 		#linkNavbar {
 			padding: 20px;
+			font-weight: 600;
+			color: #0d6efd;
 		}
 		
 		#containerItemNav {
@@ -53,8 +55,7 @@
 			color: white;
 			z-index: 10;
 		}
-		
-	
+
 	</style>
 </head>
 
@@ -62,7 +63,7 @@
 
 	<nav class="navbar bg-body-tertiary fixed-top">
 		<div class="container-fluid d-flex align-items-center">
-			<a id="linkNavbar" class="navbar-brand" href="StudentControllerServlet"><h1>Student Tracker App</h1></a>
+			<a id="linkNavbar" class="navbar-brand" href="StudentControllerServlet"><h1><b>Student Tracker App</b></h1></a>
 			
 			<div class="d-flex ms-auto" id="containerItemNav">
 			
