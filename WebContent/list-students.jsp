@@ -49,7 +49,7 @@
 		table thead th {
 			position: sticky;
 			top: 0;
-			background-color: #212529; /* stesso colore della tua thead .table-dark */
+			background-color: #212529;
 			color: white;
 			z-index: 10;
 		}
